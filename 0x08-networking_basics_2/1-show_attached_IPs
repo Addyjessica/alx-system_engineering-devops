@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Get the list of active network interfaces
+interfaces=$(ifconfig -a | grep 'inet ' | awk '{print $2}')
+
+# Display the IPv4 addresses
+echo "$interfaces"
