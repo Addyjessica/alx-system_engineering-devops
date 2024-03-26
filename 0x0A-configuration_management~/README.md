@@ -1,1 +1,0 @@
-This readme is about the the 0x0A configuration management
