@@ -1,3 +1,21 @@
-#!usr/bin/env bash
-#start apache2 indide docker
-service apache2 start
+#!/usr/bin/env bash
+# Ensure Apache server is running and return a page containing "Hello Holberton"
+
+# Start Docker container
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# Get container ID
+CONTAINER_ID=$(docker ps -q)
+
+# Connect to the container
+docker exec -it $CONTAINER_ID /bin/bash
+
+# Update Apache configuration to serve the correct directory
+sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
+sed -i 's/\/var\/www\/html/\/var\/www\/html\/public/' /etc/apache2/sites-available/000-default.conf
+mkdir -p /var/www/html/public
+echo "Hello Holberton" > /var/www/html/public/index.html
+
+# Restart Apache server to apply changes
+service apache2 restart
+
