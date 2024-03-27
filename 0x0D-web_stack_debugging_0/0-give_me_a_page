@@ -8,7 +8,7 @@ docker run -p 8080:80 -d -it holbertonschool/265-0
 CONTAINER_ID=$(docker ps -q)
 
 # Connect to the container
-docker exec -it $CONTAINER_ID /bin/bash
+docker exec -it "$CONTAINER_ID" /bin/bash
 
 # Update Apache configuration to serve the correct directory
 sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
